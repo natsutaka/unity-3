@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 75.5
-    y: 101.5
+    x: 76
+    y: 102
     width: 1206
     height: 715
   m_ShowMode: 4
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 42
+  controlID: 101
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -293,8 +293,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 75.5
-    y: 525.5
+    x: 76
+    y: 526
     width: 920
     height: 250
   m_ViewDataDictionary: {fileID: 0}
@@ -317,14 +317,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\west_\unity\unity-3\Navigation
+  m_LastProjectPath: D:\unity-3\Navigation
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 06340000
-    m_LastClickedID: 13318
-    m_ExpandedIDs: 000000000234000000ca9a3b
+    m_SelectedIDs: 08340000
+    m_LastClickedID: 13320
+    m_ExpandedIDs: 000000000634000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -352,7 +352,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000002340000
+    m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -429,8 +429,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 996.5
-    y: 131.5
+    x: 997
+    y: 132
     width: 284
     height: 644
   m_ViewDataDictionary: {fileID: 0}
@@ -467,8 +467,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 75.5
-    y: 131.5
+    x: 76
+    y: 132
     width: 227
     height: 373
   m_ViewDataDictionary: {fileID: 0}
@@ -477,7 +477,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 68fbffff
+      m_ExpandedIDs: 62faffff78faffff68fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -522,8 +522,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 303.5
-    y: 131.5
+    x: 304
+    y: 132
     width: 691
     height: 373
   m_ViewDataDictionary: {fileID: 0}
@@ -587,11 +587,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.009356835, y: 0.98244846, z: -0.17909001, w: -0.05132953}
     speed: 2
-    m_Value: {x: -0.009356835, y: 0.98244846, z: -0.17909001, w: -0.051329527}
+    m_Value: {x: -0.019843763, y: 0.97822803, z: -0.17377608, w: -0.11170541}
   m_Size:
     m_Target: 2.1512225
     speed: 2
-    m_Value: 2.1512225
+    m_Value: 3.2927244
   m_Ortho:
     m_Target: 0
     speed: 2

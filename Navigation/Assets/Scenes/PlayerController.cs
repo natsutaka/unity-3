@@ -1,0 +1,24 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class PlayerController : MonoBehaviour
+{
+    NavMeshAgent Player_Nav;
+    GameObject Destination;
+
+    void Start()
+    {
+        //プレイヤーのNavMeshAgentを取得
+        Player_Nav = GetComponent<NavMeshAgent>();
+        //目的地のオブジェクトを取得
+        Destination = GameObject.Find("Destination");
+    }
+
+    void Update()
+    {
+        //目的地を設定
+        Player_Nav.SetDestination(Destination.transform.position);
+    }
+}

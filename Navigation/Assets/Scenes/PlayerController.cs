@@ -131,6 +131,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    ///オブジェクト同士が触れているか判定
+    void OnCollisionStay(Collision collision)
+    {       
+        Debug.Log("Collision Stay: " + collision.gameObject.name);
+        if (collision.gameObject.name == JumpStartPlace) DoJump();
+    }
 
     ///<summary>
     ///    ジャンプ入力チェック
@@ -138,9 +144,10 @@ public class PlayerController : MonoBehaviour
     private bool JumpInput()
     {
         // ジャンプ最速入力のテスト用にGetButton
-        if (Input.GetButton("Jump")) return true;    // ジャンプキー押しっぱなしで連続ジャンプ
-                                                     //if (Input.GetButtonDown("Jump")) return true;    // ジャンプキーが押された時だけジャンプにする時はこっち
-                                                     // または、 if (Input.GetKeyUp(KeyCode.Space)) return true; とかでも可
+        //if (Input.GetButton("Jump")) return true;    // ジャンプキー押しっぱなしで連続ジャンプ
+        //if (Input.GetButtonDown("Jump")) return true;    // ジャンプキー押しっぱなしで連続ジャンプ
+        //if (OnCollisionStay() == Cylinder) return true;                                             //if (Input.GetButtonDown("Jump")) return true;    // ジャンプキーが押された時だけジャンプにする時はこっち
+                                                                                                    // または、 if (Input.GetKeyUp(KeyCode.Space)) return true; とかでも可
         return false;
     }
 

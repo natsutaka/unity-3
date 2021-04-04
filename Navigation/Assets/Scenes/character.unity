@@ -179,7 +179,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 54220e71b40935e419fb695dd9c747b6, type: 2}
+      objectReference: {fileID: 9100000, guid: eb79e3fd0dd669f40a90a984b92a0ccf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
 --- !u!1 &411262325
@@ -408,8 +408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95403400ad3318944950fe861c7ac258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 10
-  _groundDistance: 0
 --- !u!195 &1140870847
 NavMeshAgent:
   m_ObjectHideFlags: 0

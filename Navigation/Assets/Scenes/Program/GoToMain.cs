@@ -14,7 +14,8 @@ public class GoToMain : MonoBehaviour
     //キャラ配置確定の場合
     public void YesButton()
     {
-        SceneManager.LoadScene("MergeScene");
+        SceneManager.LoadScene("character");
+   
     }
 
     //キャラ配置置きなおす場合

@@ -5,39 +5,50 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    NavMeshAgent Player_Nav;
-    GameObject Destination;
-
-    GameObject JumpStartPlace;
-    GameObject JumpFinishPlace;
-
-    //    ジャンプ処理に使用するRigidbody
-    private Rigidbody _rigidBody;
-    //    ジャンプアニメーションを担当するAnimator
-    
+    //キャラクタのナビメッシュ
+     NavMeshAgent Player_Nav;
+    //目的地のオブジェクト
+     GameObject Destination;
+     //キャラクタtが生成されるまでのフラグ
+    int MoveCheckFlag = 0;
 
     void Start()
     {
-        //プレイヤーのNavMeshAgentを取得
-        Player_Nav = GetComponent<NavMeshAgent>();
         //目的地のオブジェクトを取得
         Destination = GameObject.Find("Destination");
+    }
 
-
-    }   
 
     void Update()
     {
-        MoveArea();
+        //キャラクタが生成されているかどうか判定
+        if (MoveCheckFlag == 1)
+        {
+            MoveCheckFlag++;
+        }
+
+        //キャラクタが生成されたのが確認できた場合
+        if(MoveCheckFlag == 2)
+        {
+            //目的地を設定
+            Player_Nav.SetDestination(Destination.transform.position);
+            MoveCheckFlag++;
+        }
 
     }
 
   
        
-    public void MoveArea()
+     public void MoveArea()
     {
-        //目的地を設定
-        Player_Nav.SetDestination(Destination.transform.position);
+        if (MoveCheckFlag == 0)
+        {
+            //プレイヤー(クローン)のNavMeshAgentを取得
+            Player_Nav = GameObject.Find("Player(Clone)").GetComponent<NavMeshAgent>();
+            Player_Nav.SetDestination(Destination.transform.position);
+            
+            MoveCheckFlag++;
+        }
     }
 }
 

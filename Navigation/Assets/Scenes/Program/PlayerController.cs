@@ -28,10 +28,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        MoveArea();
+
+    }
+
+  
+       
+    public void MoveArea()
+    {
         //目的地を設定
         Player_Nav.SetDestination(Destination.transform.position);
-        
-
     }
 }
 

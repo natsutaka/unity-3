@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/character.unity
     guid: b4b558cd534352b4f9c45ba11af10148
+  - enabled: 1
+    path: Assets/Scenes/CharacterConfirm.unity
+    guid: 8e8ce9baf1e538646acf69568fad7ebd
+  - enabled: 1
+    path: Assets/Scenes/MergeScene.unity
+    guid: ea1c8ed208add444aa7f150a6154e4bc
   m_configObjects: {}

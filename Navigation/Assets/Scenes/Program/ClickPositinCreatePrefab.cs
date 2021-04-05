@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ClickPositinCreatePrefab : MonoBehaviour
 {
+    //public GameObject Plane;
     public GameObject Prefab;
     //クリックした位置座標
     private Vector3 clickPosition;
@@ -16,21 +17,29 @@ public class ClickPositinCreatePrefab : MonoBehaviour
     {
         //生成したいPrefab
         GameObject Prefab = (GameObject)Resources.Load("Basic Motions Dummy.fbx");
-
+        //GameObject Plane = GameObject.Find("Plane");
     }
 
     // Update is called once per frame
     void Update()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit = new RaycastHit();
+
         if (Input.GetMouseButtonDown(0))
         {
             if (CreateFlag == 0)
             {
-                clickPosition = Input.mousePosition;
-                clickPosition.z = 10f;
-                GameObject PlayerCharacter = Instantiate(Prefab, Camera.main.ScreenToWorldPoint(clickPosition), Prefab.transform.rotation);
+                //レイを投げて何かのオブジェクトに当たった場合
+                if (Physics.Raycast(ray, out hit))
+                {
+                    clickPosition = Input.mousePosition;
+                    clickPosition.z = 10f;
+                    //clickPosition.y = 10f;
+                    GameObject PlayerCharacter = Instantiate(Prefab, hit.point, Prefab.transform.rotation);
 
-                CreateFlag++;
+                    CreateFlag++;
+                }
             }
             if(CreateFlag == 1)
             {

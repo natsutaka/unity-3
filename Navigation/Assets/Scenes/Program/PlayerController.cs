@@ -14,8 +14,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //目的地のオブジェクトを取得
-        Destination = GameObject.Find("Destination");
+
     }
 
 
@@ -27,11 +26,12 @@ public class PlayerController : MonoBehaviour
             MoveCheckFlag++;
         }
 
-        //キャラクタが生成されたのが確認できた場合
-        if(MoveCheckFlag == 2)
+      //キャラクタが生成されたのが確認できた場合
+      if (MoveCheckFlag == 2)
         {
             //目的地を設定
-            Player_Nav.SetDestination(Destination.transform.position);
+            //Player_Nav.SetDestination(Destination.transform.position);
+            MoveArea();
             MoveCheckFlag++;
         }
 
@@ -45,6 +45,10 @@ public class PlayerController : MonoBehaviour
         {
             //プレイヤー(クローン)のNavMeshAgentを取得
             Player_Nav = GameObject.Find("Player(Clone)").GetComponent<NavMeshAgent>();
+
+            //目的地のオブジェクトを取得
+            Destination = GameObject.Find("Goal(Clone)");
+
             Player_Nav.SetDestination(Destination.transform.position);
             
             MoveCheckFlag++;

@@ -4,6 +4,6 @@ public class MergeScenes : MonoBehaviour
 {
     void Start()
     {
-        Application.LoadLevelAdditive("roomScene");
+        //Application.LoadLevelAdditive("roomScene");
     }
 }

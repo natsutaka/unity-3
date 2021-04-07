@@ -6,11 +6,6 @@ using UnityEngine.SceneManagement;
 public class GoToMain : MonoBehaviour
 {
 
-    void Start()
-    {
-
-    }
-
     //titleからmainへ
     public void PushGoToMainButton()
      {

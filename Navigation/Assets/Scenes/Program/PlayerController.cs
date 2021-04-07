@@ -19,18 +19,10 @@ public class PlayerController : MonoBehaviour
 
 
     void Update()
-    {
-        //キャラクタが生成されているかどうか判定
-        if (MoveCheckFlag == 1)
-        {
-            MoveCheckFlag++;
-        }
-
+    { 
       //キャラクタが生成されたのが確認できた場合
-      if (MoveCheckFlag == 2)
+      if (MoveCheckFlag == 1)
         {
-            //目的地を設定
-            //Player_Nav.SetDestination(Destination.transform.position);
             MoveArea();
             MoveCheckFlag++;
         }

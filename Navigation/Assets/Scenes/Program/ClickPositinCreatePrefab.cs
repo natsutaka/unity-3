@@ -4,14 +4,35 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
+//フラグの構造体
+public struct FLAG
+{
+    public bool CharaFlag;
+    public bool GoalFlag;
+    public bool Flag;
+
+    public FLAG(bool CharaFlag, bool GoalFlag, bool Flag)
+    {
+        this.CharaFlag = CharaFlag;
+        this.GoalFlag = GoalFlag;
+        this.Flag = Flag;
+    }
+}
+
 
 public class ClickPositinCreatePrefab : MonoBehaviour
 {
     //キャラクタのプレハブ
     public GameObject Prefab;
 
+    //キャラクタのクローン
+    public static GameObject Chara;
+
     //Goalのプレハブ
     public GameObject Destination;
+
+    //Goalのクローン
+    public static GameObject GoalPosition;
 
     //クリックした位置座標
     private Vector3 clickPosition;
@@ -19,8 +40,8 @@ public class ClickPositinCreatePrefab : MonoBehaviour
     //Moveメソッド利用するためのGameObject
     //private GameObject MoveObject;
 
-    private bool CharaFlag = true;
-    private bool GoalFlag = true;
+    //各フラグの初期値
+    public static FLAG Flags = new FLAG(true, true, true);
 
     void Start()
     {
@@ -29,6 +50,12 @@ public class ClickPositinCreatePrefab : MonoBehaviour
 
         //生成したいDestination
         GameObject Destination = (GameObject)Resources.Load("Goal");
+
+        if (Flags.CharaFlag == true && Flags.GoalFlag == true && Flags.Flag == true)
+        {
+            Destroy(Chara);
+            Destroy(GoalPosition);
+        }
     }
 
     // Update is called once per frame
@@ -42,7 +69,7 @@ public class ClickPositinCreatePrefab : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //生成されていない場合
-            if (CharaFlag)
+            if (Flags.CharaFlag)
             {
                 //レイを投げて何かのオブジェクトに当たった場合
                 if (Physics.Raycast(ray, out hit))
@@ -50,15 +77,15 @@ public class ClickPositinCreatePrefab : MonoBehaviour
                     clickPosition = Input.mousePosition;
                     clickPosition.z = 10f;
 
-                    //キャラクタ生成
-                    Instantiate(Prefab, hit.point, Prefab.transform.rotation);
+                    //キャラクタを生成しオブジェクトに保存
+                    Chara = Instantiate(Prefab, hit.point, Prefab.transform.rotation);
 
                     //生成したのでフラグ変更
-                    CharaFlag = false;
+                    Flags.CharaFlag = false;
                 }
             }
 
-            else if(GoalFlag)
+            else if(Flags.GoalFlag)
             {
                 //レイを投げて何かのオブジェクトに当たった場合
                 if (Physics.Raycast(ray, out hit))
@@ -66,24 +93,35 @@ public class ClickPositinCreatePrefab : MonoBehaviour
                     clickPosition = Input.mousePosition;
                     clickPosition.z = 10f;
 
-                    //キャラクタ生成
-                    Instantiate(Destination, hit.point, Destination.transform.rotation);
+                    //ゴールの生成
+                    GoalPosition = Instantiate(Destination, hit.point, Destination.transform.rotation);
 
                     //生成したのでフラグ変更
-                    GoalFlag = false;
+                    Flags.GoalFlag = false;
                 }
             }
 
         }
         //キャラクタが生成されている場合
-        if (!CharaFlag && !GoalFlag)
+        if (!Flags.CharaFlag && !Flags.GoalFlag && Flags.Flag)
         {
             //PlayerControllerのコンポーネントを利用
-            Prefab.GetComponent<PlayerController>().MoveArea();
+            Chara.GetComponent<PlayerController>().MoveArea();
+
+            //CharaHouseSceneを破棄しないようにする
+            DontDestroyOnLoad(Chara);
+            DontDestroyOnLoad(GoalPosition);
+
+            //次のシーンに切り替えてもそのままCharaHouseSceneが映る
+            //Application.LoadLevelAdditive("CharacterConfirm");
+
+            Flags.Flag = false;
 
             //確認画面へ遷移
-           // SceneManager.LoadScene("CharaHouseScene");
+            SceneManager.LoadScene("CharacterConfirm");
         }
         
     }
+
+
 }

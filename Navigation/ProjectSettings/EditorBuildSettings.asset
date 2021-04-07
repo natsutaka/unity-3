@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MergeScene.unity
     guid: ea1c8ed208add444aa7f150a6154e4bc
+  - enabled: 1
+    path: Assets/Scenes/CharaHouseScene.unity
+    guid: 10b702c4d5744da4b84a06962e2df22f
   m_configObjects: {}

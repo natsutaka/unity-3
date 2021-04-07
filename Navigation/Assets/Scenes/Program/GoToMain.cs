@@ -24,7 +24,9 @@ public class GoToMain : MonoBehaviour
         ClickPositinCreatePrefab.Flags.CharaFlag = false;
         ClickPositinCreatePrefab.Flags.GoalFlag = false;
         ClickPositinCreatePrefab.Flags.Flag = false;
+        ClickPositinCreatePrefab.Flags.MoveCheck = false;
         SceneManager.LoadScene("CharaHouseScene");
+
     }
 
     //キャラ配置置きなおす場合
@@ -34,6 +36,7 @@ public class GoToMain : MonoBehaviour
         ClickPositinCreatePrefab.Flags.CharaFlag = true;
         ClickPositinCreatePrefab.Flags.GoalFlag = true;
         ClickPositinCreatePrefab.Flags.Flag = true;
+        ClickPositinCreatePrefab.Flags.MoveCheck = true;
         SceneManager.LoadScene("CharaHouseScene");
     }
 }

@@ -10,12 +10,14 @@ public struct FLAG
     public bool CharaFlag;
     public bool GoalFlag;
     public bool Flag;
+    public bool MoveCheck;
 
-    public FLAG(bool CharaFlag, bool GoalFlag, bool Flag)
+    public FLAG(bool CharaFlag, bool GoalFlag, bool Flag, bool MoveCheck)
     {
         this.CharaFlag = CharaFlag;
         this.GoalFlag = GoalFlag;
         this.Flag = Flag;
+        this.MoveCheck = MoveCheck;
     }
 }
 
@@ -29,7 +31,7 @@ public class ClickPositinCreatePrefab : MonoBehaviour
     public static GameObject Chara;
 
     //Goalのプレハブ
-    public GameObject Destination;
+    public GameObject GoalPrefab;
 
     //Goalのクローン
     public static GameObject GoalPosition;
@@ -41,17 +43,17 @@ public class ClickPositinCreatePrefab : MonoBehaviour
     //private GameObject MoveObject;
 
     //各フラグの初期値
-    public static FLAG Flags = new FLAG(true, true, true);
+    public static FLAG Flags = new FLAG(true, true, true, true);
 
     void Start()
     {
         //生成したいPrefab
         GameObject Prefab = (GameObject)Resources.Load("Basic Motions Dummy.fbx");
 
-        //生成したいDestination
-        GameObject Destination = (GameObject)Resources.Load("Goal");
+        //生成したいPrefab
+        GameObject GoalPrefab = (GameObject)Resources.Load("Goal");
 
-        if (Flags.CharaFlag == true && Flags.GoalFlag == true && Flags.Flag == true)
+        if (Flags.CharaFlag && Flags.GoalFlag && Flags.Flag)
         {
             Destroy(Chara);
             Destroy(GoalPosition);
@@ -94,7 +96,7 @@ public class ClickPositinCreatePrefab : MonoBehaviour
                     clickPosition.z = 10f;
 
                     //ゴールの生成
-                    GoalPosition = Instantiate(Destination, hit.point, Destination.transform.rotation);
+                    GoalPosition = Instantiate(GoalPrefab, hit.point, GoalPrefab.transform.rotation);
 
                     //生成したのでフラグ変更
                     Flags.GoalFlag = false;
@@ -105,6 +107,8 @@ public class ClickPositinCreatePrefab : MonoBehaviour
         //キャラクタが生成されている場合
         if (!Flags.CharaFlag && !Flags.GoalFlag && Flags.Flag)
         {
+            Flags.Flag = false;
+
             //PlayerControllerのコンポーネントを利用
             Chara.GetComponent<PlayerController>().MoveArea();
 
@@ -113,12 +117,11 @@ public class ClickPositinCreatePrefab : MonoBehaviour
             DontDestroyOnLoad(GoalPosition);
 
             //次のシーンに切り替えてもそのままCharaHouseSceneが映る
-            //Application.LoadLevelAdditive("CharacterConfirm");
+            Application.LoadLevelAdditive("CharacterConfirm");
 
-            Flags.Flag = false;
 
             //確認画面へ遷移
-            SceneManager.LoadScene("CharacterConfirm");
+            //SceneManager.LoadScene("CharacterConfirm");
         }
         
     }

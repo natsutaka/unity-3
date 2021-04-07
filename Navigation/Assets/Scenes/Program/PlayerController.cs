@@ -6,11 +6,9 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     //キャラクタのナビメッシュ
-     NavMeshAgent Player_Nav;
+    public static NavMeshAgent Player_Nav;
     //目的地のオブジェクト
-     GameObject Destination;
-     //キャラクタtが生成されるまでのフラグ
-    int MoveCheckFlag = 0;
+    public static GameObject Destination;
 
     void Start()
     {
@@ -21,30 +19,25 @@ public class PlayerController : MonoBehaviour
     void Update()
     { 
       //キャラクタが生成されたのが確認できた場合
-      if (MoveCheckFlag == 1)
+      if (!ClickPositinCreatePrefab.Flags.MoveCheck)
         {
-            MoveArea();
-            MoveCheckFlag++;
+            Player_Nav.SetDestination(Destination.transform.position);
+            ClickPositinCreatePrefab.Flags.MoveCheck = true;
         }
 
     }
 
-  
-       
      public void MoveArea()
     {
-        if (MoveCheckFlag == 0)
+        if (!ClickPositinCreatePrefab.Flags.CharaFlag && !ClickPositinCreatePrefab.Flags.GoalFlag && !ClickPositinCreatePrefab.Flags.Flag)
         {
             //プレイヤー(クローン)のNavMeshAgentを取得
             Player_Nav = GameObject.Find("Player(Clone)").GetComponent<NavMeshAgent>();
-
             //目的地のオブジェクトを取得
             Destination = GameObject.Find("Goal(Clone)");
 
-            Player_Nav.SetDestination(Destination.transform.position);
-            
-            MoveCheckFlag++;
         }
+
     }
 }
 

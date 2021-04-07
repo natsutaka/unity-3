@@ -6,49 +6,38 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     //キャラクタのナビメッシュ
-     NavMeshAgent Player_Nav;
+    public static NavMeshAgent Player_Nav;
     //目的地のオブジェクト
-     GameObject Destination;
-     //キャラクタtが生成されるまでのフラグ
-    int MoveCheckFlag = 0;
+    public static GameObject Destination;
 
     void Start()
     {
-        //目的地のオブジェクトを取得
-        Destination = GameObject.Find("Destination");
+
     }
 
 
     void Update()
-    {
-        //キャラクタが生成されているかどうか判定
-        if (MoveCheckFlag == 1)
+    { 
+      //キャラクタが生成されたのが確認できた場合
+      if (!ClickPositinCreatePrefab.Flags.MoveCheck)
         {
-            MoveCheckFlag++;
-        }
-
-        //キャラクタが生成されたのが確認できた場合
-        if(MoveCheckFlag == 2)
-        {
-            //目的地を設定
             Player_Nav.SetDestination(Destination.transform.position);
-            MoveCheckFlag++;
+            ClickPositinCreatePrefab.Flags.MoveCheck = true;
         }
 
     }
 
-  
-       
      public void MoveArea()
     {
-        if (MoveCheckFlag == 0)
+        if (!ClickPositinCreatePrefab.Flags.CharaFlag && !ClickPositinCreatePrefab.Flags.GoalFlag && !ClickPositinCreatePrefab.Flags.Flag)
         {
             //プレイヤー(クローン)のNavMeshAgentを取得
             Player_Nav = GameObject.Find("Player(Clone)").GetComponent<NavMeshAgent>();
-            Player_Nav.SetDestination(Destination.transform.position);
-            
-            MoveCheckFlag++;
+            //目的地のオブジェクトを取得
+            Destination = GameObject.Find("Goal(Clone)");
+
         }
+
     }
 }
 

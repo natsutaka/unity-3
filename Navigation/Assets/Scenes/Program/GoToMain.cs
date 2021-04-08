@@ -34,4 +34,14 @@ public class GoToMain : MonoBehaviour
         ClickPositinCreatePrefab.Flags.MoveCheck = true;
         SceneManager.LoadScene("CharaHouseScene");
     }
+
+    //タイトルシーンに戻る
+    public void TitleButton()
+    {
+        ClickPositinCreatePrefab.Flags.CharaFlag = true;
+        ClickPositinCreatePrefab.Flags.GoalFlag = true;
+        ClickPositinCreatePrefab.Flags.Flag = true;
+        ClickPositinCreatePrefab.Flags.MoveCheck = true;
+        SceneManager.LoadScene("TitleScene");
+    }
 }

@@ -39,6 +39,9 @@ public class ClickPositinCreatePrefab : MonoBehaviour
     //クリックした位置座標
     private Vector3 clickPosition;
 
+    //Textオブジェクトの取得
+    public GameObject TextCharaHouse;
+
     //Moveメソッド利用するためのGameObject
     //private GameObject MoveObject;
 
@@ -52,6 +55,9 @@ public class ClickPositinCreatePrefab : MonoBehaviour
 
         //生成したいPrefab
         GameObject GoalPrefab = (GameObject)Resources.Load("Goal");
+
+        //Textの取得
+        GameObject TextCharaHouse = GameObject.Find("CharaText");
 
         if (Flags.CharaFlag && Flags.GoalFlag && Flags.Flag)
         {
@@ -115,6 +121,9 @@ public class ClickPositinCreatePrefab : MonoBehaviour
             //CharaHouseSceneを破棄しないようにする
             DontDestroyOnLoad(Chara);
             DontDestroyOnLoad(GoalPosition);
+
+            //配置してくださいというテキストを非表示にする
+            TextCharaHouse.SetActive(false);
 
             //次のシーンに切り替えてもそのままCharaHouseSceneが映る
             Application.LoadLevelAdditive("CharacterConfirm");
